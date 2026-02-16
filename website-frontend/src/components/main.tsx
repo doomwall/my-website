@@ -8,6 +8,20 @@ import {
 } from "@/components/ui/card"
 
 function Main() {
+    const skills = [
+    'Python',
+    'JavaScript', 
+    'SQL',
+    'Robot Framework',
+    'Tailwind CSS',
+    'Playwright',
+    'Scrum',
+    'DevOps',
+    'Frontend',
+    'Backend',
+    'git'
+  ];
+
     const bio = `I’m a second-year Computer Science student focused on software development and web technologies.I work mainly with Python and JavaScript, building web applications with an emphasis on clear structure, maintainability, and correctness.
 
     I have experience across the full web stack, including backend logic, templating, and frontend behavior, and I’m comfortable working with common development tools and workflows. I follow Agile/Scrum practices and apply DevOps principles such as version control, incremental delivery, and environment-aware development.
@@ -37,17 +51,9 @@ function Main() {
         <CardContent>
 
             <div className="flex w-full flex-wrap justify-left gap-2">
-            <Badge variant="outline">Python</Badge>
-            <Badge variant="outline">JavaScript</Badge>
-            <Badge variant="outline">SQL</Badge>
-            <Badge variant="outline">Robot Framework</Badge>
-            <Badge variant="outline">Tailwind CSS</Badge>
-            <Badge variant="outline">Playwright</Badge>
-            <Badge variant="outline">Scrum</Badge>
-            <Badge variant="outline">DevOps</Badge>
-            <Badge variant="outline">Frontend</Badge>
-            <Badge variant="outline">Backend</Badge>
-            <Badge variant="outline">git</Badge>
+              {skills.map((skill) => (
+                <Badge key={skill} variant="outline">{skill}</Badge>
+              ))}
             </div>
         </CardContent>
     </Card>
