@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
@@ -11,7 +10,7 @@ import {
 function CarouselDev() {
   return (
     <div className="flex flex-col md:flex-row gap-4 justify-center px-4 pt-4">
-      <Carousel className="w-full max-w-5xl mx-auto">
+      <Carousel className="w-full max-w-4xl mx-auto">
         <CarouselContent className="-ml-2 md:-ml-4">
           <CarouselItem className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
             <div className="p-1">
