@@ -21,7 +21,6 @@ services:
     depends_on:
       - backend
     environment:
-      BACKEND_HOST: backend
       PORT: 80
     ports:
       - "8080:80"
