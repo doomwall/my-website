@@ -96,7 +96,7 @@ async def contact(request: Request, form: ContactForm):
             password=smtp_password,
             start_tls=True,
         )
-        logger.info(f"Contact email sent from {form.email}")
+        logger.info("Contact email sent")
     except Exception as e:
         logger.error(f"Failed to send email: {e}")
         raise HTTPException(status_code=500, detail="Failed to send message")
