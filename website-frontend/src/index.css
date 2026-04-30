@@ -3,6 +3,10 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
 
+html {
+  scroll-behavior: smooth !important;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 .white {

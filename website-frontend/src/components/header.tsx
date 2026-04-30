@@ -74,9 +74,14 @@ function Header() {
             ref={button_conf.ref}
             className={`${popUp} ${button_conf.inView ? visible : hidden}`}
             style={{ transitionDelay: button_conf.inView ? button_fade_delay : "0ms" }}>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               variant="default"
+              onClick={() => {
+                const el = document.getElementById("bio")
+                if (!el) return
+                window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: "smooth" })
+              }}
             >Lets Get Started</Button>
           </div>
           

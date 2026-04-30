@@ -51,8 +51,9 @@ function Email() {
   return (
     <>
       <div
+        id="contact"
         ref={contact.ref}
-        style={{ transitionDelay: email.inView ? "400ms" : "0ms" }}
+        style={{ transitionDelay: contact.inView ? "400ms" : "0ms" }}
         className={`flex flex-col items-center justify-center gap-4 ${popUp} ${contact.inView ? visible : hidden}`}
       >
         <h2 className="text-2xl font-bold">Contact Me</h2>
