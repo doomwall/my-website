@@ -26,12 +26,22 @@ export const projects: Project[] = [
     id: "gen-ai-playground",
     title: "Gen-AI Playground",
     alt: "Gen-AI Playground Demo",
-    image: "/photos/tekstigen.gif",
+    image: "/photos/gen-ai.gif",
     description: "Experimenting with generative AI models",
     longDescription:
       "A sandbox environment for experimenting with generative AI models and APIs. Used for testing prompting strategies, output formatting, and integrating AI capabilities into web interfaces.",
     tech: ["Python", "TypeScript", "React", "FastAPI", "CI/CD", "Docker", "Playwright", "Scrum", "DevOps"],
     github: "https://github.com/TKT20007-Generative-AI-playground/gen-ai-playground",
+  },
+  {
+    id: "game-project",
+    title: "Untitled Unfinished Game Project",
+    alt: "Game Project Demo",
+    image: "/photos/gamegif.gif",
+    description: "A work-in-progress game",
+    longDescription:
+      "An ongoing game project made with Godot. Still in active development — the focus has been on getting the core game loop and mechanics right before expanding scope.",
+    tech: ["GDScript", "Godot"],
   },
   {
     id: "mtg-deck-library",
@@ -43,15 +53,5 @@ export const projects: Project[] = [
       "A deck-building and library management tool for Magic: The Gathering. Allows users to create, organize, and browse decks. Built with a structured backend to handle card data and deck relationships.",
     tech: ["Python", "SQL", "HTML", "CSS"],
     github: "https://github.com/doomwall/mtg-pakkakirjasto",
-  },
-  {
-    id: "game-project",
-    title: "Untitled Unfinished Game Project",
-    alt: "Game Project Demo",
-    image: "/photos/gamegif.gif",
-    description: "A work-in-progress game",
-    longDescription:
-      "An ongoing game project made with Godot. Still in active development — the focus has been on getting the core game loop and mechanics right before expanding scope.",
-    tech: ["GDScript", "Godot"],
   },
 ]
