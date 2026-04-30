@@ -5,6 +5,12 @@
 
 html {
   scroll-behavior: smooth !important;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 @custom-variant dark (&:is(.dark *));

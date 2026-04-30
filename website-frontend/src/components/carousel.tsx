@@ -70,7 +70,7 @@ function CarouselDev() {
     className={`flex flex-col items-center justify-center gap-4 ${popUp} ${checkOut.inView ? visible : hidden}`}
   >
     <h2 className="text-2xl font-bold">Checkout my...</h2>
-    <div className="flex gap-3">
+    <div className="flex flex-wrap justify-center gap-3 px-4">
       <Button variant="default" size="lg" onClick={() => window.location.href = "/projects"}>
         <HugeiconsIcon icon={ComputerCheckIcon} strokeWidth={2} />
         Projects
