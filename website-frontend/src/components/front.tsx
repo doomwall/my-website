@@ -6,8 +6,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { useInView, popUp, visible, hidden } from "@/hooks/useInView"
 
-function Main() {
+const card1_fade_delay = "600ms"
+const card2_fade_delay = "800ms"
+
+function Front() {
+  const card1 = useInView()
+  const card2 = useInView()
     const skills = [
     'Python',
     'JavaScript', 
@@ -19,7 +25,34 @@ function Main() {
     'DevOps',
     'Frontend',
     'Backend',
-    'git'
+    'git',
+    'Agile',
+    'Web Development',
+    'Software Development',
+    'Full Stack Development',
+    'Test Automation',
+    'Continuous Integration',
+    'Continuous Delivery',
+    'Version Control',
+    'Environment-Aware Development',
+    'Problem Solving',
+    'Code Maintainability',
+    'Code Readability',
+    'Iterative Improvement',
+    'Practical Problem Solving',
+    'Disciplined Approach',
+    'Software Architecture',
+    'System Design',
+    'Code Refactoring',
+    'Code Reviews',
+    'Debugging',
+    'Performance Optimization',
+    'Scalability',
+    'Security Best Practices',
+    'Testing Strategies',
+    'Documentation',
+    'Collaboration',
+    'Communication',
   ];
 
     const bio = `I’m a second-year Computer Science student focused on software development and web technologies.I work mainly with Python and JavaScript, building web applications with an emphasis on clear structure, maintainability, and correctness.
@@ -34,7 +67,10 @@ function Main() {
 
   return (
     <div className="flex flex-col md:flex-row gap-4 justify-center px-4 pt-4">
-    <Card className="relative w-full max-w-xl">
+    <Card 
+      ref={card1.ref} className={`relative w-full max-w-xl ${popUp} ${card1.inView ? visible : hidden}`} 
+      style={{ transitionDelay: card1.inView ? card1_fade_delay : "0ms" }}
+    >
       <CardHeader>
         <CardTitle>
           <h1 className="text-5xl md:text-3xl font-bold">BIO</h1>
@@ -57,10 +93,14 @@ function Main() {
             </div>
         </CardContent>
     </Card>
-    <Card className="relative w-full max-w-sm pt-2">
+    <Card 
+      ref={card2.ref} 
+      className={`relative w-full max-w-sm pt-2 ${popUp} ${card2.inView ? visible : hidden}`} 
+      style={{ transitionDelay: card2.inView ? card2_fade_delay : "0ms" }}
+    >
       <div className="absolute inset-0 z-30 aspect-square bg-black/35" />
       <img
-        src="./src/photos/my-photo.png"
+        src="/photos/my-photo.png"
         alt="Event cover"
         className="relative z-40 aspect-square w-full object-cover brightness-60 grayscale dark:brightness-40"
       />
@@ -75,4 +115,4 @@ function Main() {
   )
 }
 
-export default Main;
+export default Front;

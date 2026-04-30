@@ -1,25 +1,17 @@
-import {
-  NavigationMenuLink,
-} from "@/components/ui/navigation-menu"
+import { NavigationMenuLink } from "@/components/ui/navigation-menu"
 import { Link } from "react-router-dom"
 
-interface ListItemProps {
+interface ListItemProps extends React.ComponentPropsWithoutRef<"li"> {
   title: string;
-  children: string;
+  children: React.ReactNode;
   to: string;
-  [key: string]: any; // For ...props
 }
 
-function ListItem({
-  title,
-  children,
-  href,
-  ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+function ListItem({ title, children, to, ...props }: ListItemProps) {
   return (
     <li {...props}>
       <NavigationMenuLink asChild>
-        <Link href={href}>
+        <Link to={to}>
           <div className="text-sm leading-none font-medium">{title}</div>
           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
             {children}
@@ -30,4 +22,4 @@ function ListItem({
   )
 }
 
-export  { ListItem };
+export { ListItem };
