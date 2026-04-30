@@ -11,6 +11,7 @@ export function App() {
             <NavigationMenuMain />
             <Front />
             <CarouselDev />
+            <hr className="my-8 mx-4 border-border" />
             <Email />
         </div>
 

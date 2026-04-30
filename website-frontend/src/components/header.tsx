@@ -6,10 +6,12 @@ import { useInView, popUp, visible, hidden } from "@/hooks/useInView"
 const FADE_SECS = 1.5
 const title1_fade_delay = "200ms"
 const title2_fade_delay = "400ms"
+const button_fade_delay = "600ms"
 
 function Header() {
   const title1 = useInView()
   const title2 = useInView()
+  const button_conf = useInView()
   const videoRef = useRef<HTMLVideoElement>(null)
   const [opacity, setOpacity] = useState(0)
 
@@ -68,8 +70,14 @@ function Header() {
           >
             CV - RESUME - PORTFOLIO
           </p>
-          <div>
-            <Button size="lg" variant="default">Lets Get Started</Button>
+          <div               
+            ref={button_conf.ref}
+            className={`${popUp} ${button_conf.inView ? visible : hidden}`}
+            style={{ transitionDelay: button_conf.inView ? button_fade_delay : "0ms" }}>
+            <Button 
+              size="lg" 
+              variant="default"
+            >Lets Get Started</Button>
           </div>
           
         </div>
