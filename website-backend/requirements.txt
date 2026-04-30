@@ -4,3 +4,4 @@ aiosmtplib
 slowapi
 python-dotenv
 pydantic[email]
+httpx

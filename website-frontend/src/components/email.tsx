@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
+import HCaptcha from "@hcaptcha/react-hcaptcha"
 import { Button } from "@/components/ui/button"
 import {
   Field,
@@ -21,17 +22,21 @@ function Email() {
   const [name, setName] = useState("")
   const [senderEmail, setSenderEmail] = useState("")
   const [message, setMessage] = useState("")
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
   const [status, setStatus] = useState<FormStatus>("idle")
+  const captchaRef = useRef<HCaptcha>(null)
 
   const handleSubmit = async (e: { preventDefault(): void }) => {
     e.preventDefault()
+    if (!captchaToken) return
+
     setStatus("loading")
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email: senderEmail, message }),
+        body: JSON.stringify({ name, email: senderEmail, message, captcha_token: captchaToken }),
       })
 
       if (!res.ok) throw new Error()
@@ -40,8 +45,12 @@ function Email() {
       setName("")
       setSenderEmail("")
       setMessage("")
+      setCaptchaToken(null)
+      captchaRef.current?.resetCaptcha()
     } catch {
       setStatus("error")
+      setCaptchaToken(null)
+      captchaRef.current?.resetCaptcha()
     }
   }
 
@@ -103,6 +112,12 @@ function Email() {
                 required
               />
             </Field>
+            <HCaptcha
+              ref={captchaRef}
+              sitekey={import.meta.env.VITE_HCAPTCHA_SITE_KEY}
+              onVerify={(token) => setCaptchaToken(token)}
+              onExpire={() => setCaptchaToken(null)}
+            />
             {status === "error" && (
               <p className="text-destructive text-sm">
                 Something went wrong. Please try again.
@@ -110,7 +125,7 @@ function Email() {
             )}
             <div className="relative h-10">
               <div className={`absolute inset-0 flex items-center transition-opacity duration-500 ${status === "idle" || status === "error" ? show : hide}`}>
-                <Button type="submit">Submit</Button>
+                <Button type="submit" disabled={!captchaToken}>Submit</Button>
               </div>
               <div className={`absolute inset-0 flex items-center transition-opacity duration-500 ${status === "loading" ? show : hide}`}>
                 <Badge variant="outline" className="px-2 py-1">

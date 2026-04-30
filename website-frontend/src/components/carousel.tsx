@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { GithubIcon, Linkedin01Icon, WorkflowCircle01Icon, ComputerCheckIcon } from "@hugeicons/core-free-icons"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
@@ -70,10 +72,24 @@ function CarouselDev() {
     <h2 className="text-2xl font-bold">Checkout my...</h2>
     <div className="flex gap-3">
       <Button variant="default" size="lg" onClick={() => window.location.href = "/projects"}>
+        <HugeiconsIcon icon={ComputerCheckIcon} strokeWidth={2} />
         Projects
       </Button>
       <Button variant="default" size="lg" onClick={() => window.location.href = "/experience"}>
+        <HugeiconsIcon icon={WorkflowCircle01Icon} strokeWidth={2} />
         Experience
+      </Button>
+      <Button variant="default" size="lg" asChild>
+        <a href="https://github.com/doomwall" target="_blank" rel="noopener noreferrer">
+          <HugeiconsIcon icon={GithubIcon} strokeWidth={2} />
+          GitHub
+        </a>
+      </Button>
+      <Button variant="default" size="lg" asChild>
+        <a href="https://www.linkedin.com/in/tuomo-valkila/" target="_blank" rel="noopener noreferrer">
+          <HugeiconsIcon icon={Linkedin01Icon} strokeWidth={2} />
+          LinkedIn
+        </a>
       </Button>
     </div>
   </div>
