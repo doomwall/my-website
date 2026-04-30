@@ -47,6 +47,7 @@ function Header() {
         autoPlay
         loop
         muted
+        playsInline
       />
       
       

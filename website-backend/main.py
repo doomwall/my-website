@@ -24,7 +24,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://tuomovalkila.dev"],
     allow_methods=["POST", "OPTIONS"],
     allow_headers=["Content-Type"],
 )
@@ -68,7 +68,7 @@ async def contact(request: Request, form: ContactForm):
         raise HTTPException(status_code=400, detail="Captcha verification failed")
 
     smtp_host = os.getenv("SMTP_HOST", "smtp.gmail.com")
-    smtp_port = int(os.getenv("SMTP_PORT", "587"))
+    smtp_port = int(os.getenv("SMTP_PORT", "465"))
     smtp_user = os.getenv("SMTP_USER")
     smtp_password = os.getenv("SMTP_PASSWORD")
     contact_to = os.getenv("CONTACT_TO_EMAIL")
@@ -81,7 +81,8 @@ async def contact(request: Request, form: ContactForm):
     msg["From"] = smtp_user
     msg["To"] = contact_to
     msg["Reply-To"] = form.email
-    msg["Subject"] = f"Portfolio contact from {form.name}"
+    safe_name = form.name.replace("\r", "").replace("\n", "")
+    msg["Subject"] = f"Portfolio contact from {safe_name}"
 
     body = f"Name: {form.name}\nEmail: {form.email}\n\nMessage:\n{form.message}"
     msg.attach(MIMEText(body, "plain"))
@@ -93,7 +94,7 @@ async def contact(request: Request, form: ContactForm):
             port=smtp_port,
             username=smtp_user,
             password=smtp_password,
-            start_tls=True,
+            use_tls=True,
         )
         logger.info("Contact email sent")
     except Exception as e:
