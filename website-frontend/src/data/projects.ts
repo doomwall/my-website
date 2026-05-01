@@ -30,7 +30,7 @@ export const projects: Project[] = [
     video: "/photos/textgen.mp4",
     description: "Command line text generation tool",
     longDescription:
-      "A command-line text generation application. Provides a simple interface for generating text using a simple language model using Markov chains. The project was a learning exercise in Python and text processing, and serves as a basic example of how to build a text generator from scratch.",
+      "A command-line text generation application. Provides a simple interface for generating text using a simple language model using Markov chains and Trie data structures. The project was a learning exercise in Python and text processing, and serves as a basic example of how to build a text generator from scratch.",
     tech: ["Python"],
     github: "https://github.com/doomwall/tekstigeneraattori",
   },
@@ -41,8 +41,8 @@ export const projects: Project[] = [
     video: "/photos/gen-ai.mp4",
     description: "Experimenting with generative AI models",
     longDescription:
-      "A sandbox environment for experimenting with generative AI models and APIs. Used for testing prompting strategies, output formatting, and integrating AI capabilities into web interfaces.",
-    tech: ["Python", "TypeScript", "React", "FastAPI", "CI/CD", "Docker", "Playwright", "Scrum", "DevOps"],
+      "A sandbox environment for experimenting with generative AI models and APIs. Used for testing prompting strategies, output formatting, and integrating AI capabilities into web interfaces. Part of Software engineering project course at University of Helsinki.",
+    tech: ["Python", "TypeScript", "React", "FastAPI", "CI/CD", "Docker", "Playwright"],
     github: "https://github.com/TKT20007-Generative-AI-playground/gen-ai-playground",
   },
   {
@@ -50,9 +50,9 @@ export const projects: Project[] = [
     title: "Untitled Game Project",
     alt: "Game Project Demo",
     video: "/photos/game.mp4",
-    description: "A work-in-progress game",
+    description: "A work-in-progress turn-based 2.5D dungeon crawler",
     longDescription:
-      "An ongoing game project made with Godot. Still in active development — the focus has been on getting the core game loop and mechanics right before expanding scope.",
+      "A turn-based 2.5D dungeon crawler built in Godot. Still in active development — the focus has been on building out the core combat loop, level structure, and enemy mechanics before expanding scope.",
     tech: ["GDScript", "Godot"],
   },
   {
@@ -73,8 +73,8 @@ export const projects: Project[] = [
     video: "/photos/mtg-deck.mp4",
     description: "Magic: The Gathering deck management library",
     longDescription:
-      "A deck-building and library management tool for Magic: The Gathering. Allows users to create, organize, and browse decks. Built with a structured backend to handle card data and deck relationships.",
-    tech: ["Python", "SQL", "HTML", "CSS"],
+      "A deck-building and library management tool for Magic: The Gathering. Allows users to create, organize, and browse decks. Built with Flask and a SQL backend, with HTML templates for the frontend.",
+    tech: ["Python", "Flask", "SQL", "HTML"],
     github: "https://github.com/doomwall/mtg-pakkakirjasto",
   },
 ]
