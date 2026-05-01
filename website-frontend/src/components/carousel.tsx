@@ -12,6 +12,7 @@ import {
 import { useInView, popUp, visible, hidden } from "@/hooks/useInView"
 import { projects } from "@/data/projects"
 import { Button } from "@/components/ui/button"
+import { SocialButtons } from "./socialButtons"
 
 function CarouselDev() {
   const carousel = useInView()
@@ -63,36 +64,7 @@ function CarouselDev() {
       </Carousel>
       </div>
     </div>
-      <div
-    id="contact"
-    ref={checkOut.ref}
-    style={{ transitionDelay: checkOut.inView ? "400ms" : "0ms", paddingBottom: "70px" }}
-    className={`flex flex-col items-center justify-center gap-4 ${popUp} ${checkOut.inView ? visible : hidden}`}
-  >
-    <h2 className="text-2xl font-bold">Checkout my...</h2>
-    <div className="flex flex-wrap justify-center gap-3 px-4">
-      <Button variant="default" size="lg" onClick={() => window.location.href = "/projects"}>
-        <HugeiconsIcon icon={ComputerCheckIcon} strokeWidth={2} />
-        Projects
-      </Button>
-      <Button variant="default" size="lg" onClick={() => window.location.href = "/experience"}>
-        <HugeiconsIcon icon={WorkflowCircle01Icon} strokeWidth={2} />
-        Experience
-      </Button>
-      <Button variant="default" size="lg" asChild>
-        <a href="https://github.com/doomwall" target="_blank" rel="noopener noreferrer">
-          <HugeiconsIcon icon={GithubIcon} strokeWidth={2} />
-          GitHub
-        </a>
-      </Button>
-      <Button variant="default" size="lg" asChild>
-        <a href="https://www.linkedin.com/in/tuomo-valkila/" target="_blank" rel="noopener noreferrer">
-          <HugeiconsIcon icon={Linkedin01Icon} strokeWidth={2} />
-          LinkedIn
-        </a>
-      </Button>
-    </div>
-  </div>
+    <SocialButtons />
   </>
   )
 }

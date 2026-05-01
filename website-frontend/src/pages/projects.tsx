@@ -6,6 +6,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { ChevronDown } from "@hugeicons/core-free-icons"
 import { projects } from "@/data/projects"
 import { useInView, popUp, visible, hidden } from "@/hooks/useInView"
+import { SocialButtons } from "../components/socialButtons"
 
 function ProjectCard({ project }: { project: typeof projects[number] }) {
   const [expanded, setExpanded] = useState(false)
@@ -92,6 +93,7 @@ function ProjectsPage() {
   const heading = useInView()
 
   return (
+    <>
     <div className="max-w-4xl mx-auto px-4 py-8 flex flex-col gap-4">
       <div
         ref={heading.ref}
@@ -104,6 +106,9 @@ function ProjectsPage() {
         <ProjectCard key={project.id} project={project} />
       ))}
     </div>
+    <hr className="my-8 mx-4 border-border" />
+    <SocialButtons />
+    </>
   )
 }
 
