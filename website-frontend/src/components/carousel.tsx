@@ -33,9 +33,12 @@ function CarouselDev() {
                 <Link to="/projects">
                   <Card className="group cursor-pointer overflow-hidden p-0">
                     <CardContent className="aspect-square relative" style={{ padding: 0, margin: 0 }}>
-                      <img
-                        src={item.image}
-                        alt={item.alt}
+                      <video
+                        src={item.video}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
                         className="w-full h-full object-cover transition-all duration-300 group-hover:blur-sm"
                         style={{ display: "block" }}
                       />

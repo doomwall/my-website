@@ -25,9 +25,12 @@ function ProjectCard({ project }: { project: typeof projects[number] }) {
           onClick={() => setExpanded((prev) => !prev)}
           className="w-full flex items-center gap-4 p-4 text-left cursor-pointer"
         >
-          <img
-            src={project.image}
-            alt={project.alt}
+          <video
+            src={project.video}
+            muted
+            loop
+            playsInline
+            autoPlay
             className="w-16 h-16 rounded-md object-cover shrink-0"
           />
           <div className="flex-1 min-w-0">
@@ -48,9 +51,13 @@ function ProjectCard({ project }: { project: typeof projects[number] }) {
           <div className="min-h-0 overflow-hidden">
             <div className="flex flex-col md:flex-row">
                 <div className="md:w-64 shrink-0 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.alt}
+                  <video
+                    src={project.video}
+                    muted
+                    loop
+                    playsInline
+                    autoPlay
+                    preload="none"
                     className="w-full h-48 md:h-full object-cover"
                   />
                 </div>
