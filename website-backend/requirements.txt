@@ -1,6 +1,6 @@
 fastapi
 uvicorn[standard]
-aiosmtplib
+resend
 slowapi
 python-dotenv
 pydantic[email]

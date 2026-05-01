@@ -6,10 +6,8 @@ from pydantic import BaseModel, EmailStr, Field
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
-import aiosmtplib
 import httpx
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import resend
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -67,35 +65,24 @@ async def contact(request: Request, form: ContactForm):
     if not await verify_captcha(form.captcha_token):
         raise HTTPException(status_code=400, detail="Captcha verification failed")
 
-    smtp_host = os.getenv("SMTP_HOST", "smtp.gmail.com")
-    smtp_port = int(os.getenv("SMTP_PORT", "465"))
-    smtp_user = os.getenv("SMTP_USER")
-    smtp_password = os.getenv("SMTP_PASSWORD")
+    resend.api_key = os.getenv("RESEND_API_KEY")
     contact_to = os.getenv("CONTACT_TO_EMAIL")
 
-    if not all([smtp_user, smtp_password, contact_to]):
-        logger.error("Email config incomplete — set SMTP_USER, SMTP_PASSWORD, CONTACT_TO_EMAIL")
+    if not resend.api_key or not contact_to:
+        logger.error("Email config incomplete — set RESEND_API_KEY, CONTACT_TO_EMAIL")
         raise HTTPException(status_code=500, detail="Email service unavailable")
 
-    msg = MIMEMultipart()
-    msg["From"] = smtp_user
-    msg["To"] = contact_to
-    msg["Reply-To"] = form.email
     safe_name = form.name.replace("\r", "").replace("\n", "")
-    msg["Subject"] = f"Portfolio contact from {safe_name}"
-
     body = f"Name: {form.name}\nEmail: {form.email}\n\nMessage:\n{form.message}"
-    msg.attach(MIMEText(body, "plain"))
 
     try:
-        await aiosmtplib.send(
-            msg,
-            hostname=smtp_host,
-            port=smtp_port,
-            username=smtp_user,
-            password=smtp_password,
-            use_tls=True,
-        )
+        resend.Emails.send({
+            "from": "Portfolio Contact <onboarding@resend.dev>",
+            "to": contact_to,
+            "reply_to": form.email,
+            "subject": f"Portfolio contact from {safe_name}",
+            "text": body,
+        })
         logger.info("Contact email sent")
     except Exception as e:
         logger.error(f"Failed to send email: {e}")
