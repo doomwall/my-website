@@ -12,6 +12,17 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "portfolio-website",
+    title: "This Portfolio",
+    alt: "Portfolio website screenshot",
+    image: "/photos/my-website.gif",
+    description: "Personal portfolio and CV website — the one you're looking at",
+    longDescription:
+      "A full-stack portfolio website built from scratch and deployed to production. The frontend is a React + TypeScript SPA served by nginx, and the backend is a FastAPI service handling contact form submissions with hCaptcha verification and transactional email via Resend. Both services are containerised with Docker and deployed on Railway.",
+    tech: ["React", "TypeScript", "FastAPI", "Python", "Docker", "Railway", "nginx", "hCaptcha", "Resend"],
+    demo: "https://tuomovalkila.dev",
+  },
+  {
     id: "textgenerator",
     title: "Textgenerator",
     alt: "Text Generation Demo",
