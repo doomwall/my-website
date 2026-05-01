@@ -20,6 +20,7 @@ export const projects: Project[] = [
     longDescription:
       "A full-stack portfolio website built from scratch and deployed to production. The frontend is a React + TypeScript SPA served by nginx, and the backend is a FastAPI service handling contact form submissions with hCaptcha verification and transactional email via Resend. Both services are containerised with Docker and deployed on Railway.",
     tech: ["React", "TypeScript", "FastAPI", "Python", "Docker", "Railway", "nginx", "hCaptcha", "Resend"],
+    github: "https://github.com/doomwall/my-website",
     demo: "https://tuomovalkila.dev",
   },
   {

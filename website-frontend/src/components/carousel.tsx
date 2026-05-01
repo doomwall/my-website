@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom"
-import { HugeiconsIcon } from "@hugeicons/react"
-import { GithubIcon, Linkedin01Icon, WorkflowCircle01Icon, ComputerCheckIcon } from "@hugeicons/core-free-icons"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
@@ -11,12 +9,10 @@ import {
 } from "@/components/ui/carousel"
 import { useInView, popUp, visible, hidden } from "@/hooks/useInView"
 import { projects } from "@/data/projects"
-import { Button } from "@/components/ui/button"
 import { SocialButtons } from "./socialButtons"
 
 function CarouselDev() {
   const carousel = useInView()
-  const checkOut = useInView()
 
   return (
     <>
