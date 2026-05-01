@@ -47,13 +47,24 @@ export const projects: Project[] = [
   },
   {
     id: "game-project",
-    title: "Untitled Unfinished Game Project",
+    title: "Untitled Game Project",
     alt: "Game Project Demo",
     video: "/photos/game.mp4",
     description: "A work-in-progress game",
     longDescription:
       "An ongoing game project made with Godot. Still in active development — the focus has been on getting the core game loop and mechanics right before expanding scope.",
     tech: ["GDScript", "Godot"],
+  },
+  {
+    id: "mtg-discord",
+    title: "MTG Discord Life Tracker",
+    alt: "MTG Discord Life Tracker Demo",
+    video: "/photos/mtg-disc.mp4",
+    description: "Discord bot for tracking life points in Magic: The Gathering games",
+    longDescription:
+      "A Discord bot built on top of Discord's example app that tracks life totals during Magic: The Gathering games. Players can manage game state and health stats directly inside a Discord server through slash commands. Built with Node.js and the Discord API.",
+    tech: ["JavaScript", "Node.js", "Discord API"],
+    github: "https://github.com/doomwall/mtg-discord",
   },
   {
     id: "mtg-deck-library",

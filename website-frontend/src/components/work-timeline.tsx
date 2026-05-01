@@ -85,7 +85,7 @@ function WorkTimeline() {
         ref={heading.ref}
         className={`text-center mb-10 ${popUp} ${heading.inView ? visible : hidden}`}
       >
-        <h2 className="text-3xl font-bold">Work Experience</h2>
+        <h2 className="text-3xl font-bold">Experience</h2>
         <a href="/cv.pdf" download className="mt-4 inline-block">
           <Button variant="outline" size="sm">Download CV</Button>
         </a>

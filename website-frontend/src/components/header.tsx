@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { useInView, popUp, visible, hidden } from "@/hooks/useInView"
@@ -14,6 +15,20 @@ function Header() {
   const button_conf = useInView()
   const videoRef = useRef<HTMLVideoElement>(null)
   const [opacity, setOpacity] = useState(0)
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const scrollToBio = () => {
+    const scroll = () =>
+      document.getElementById("bio")?.scrollIntoView({ behavior: "smooth" })
+
+    if (location.pathname === "/") {
+      scroll()
+    } else {
+      navigate("/")
+      setTimeout(scroll, 50)
+    }
+  }
 
   useEffect(() => {
     const video = videoRef.current
@@ -78,11 +93,7 @@ function Header() {
             <Button
               size="lg"
               variant="default"
-              onClick={() => {
-                const el = document.getElementById("bio")
-                if (!el) return
-                window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: "smooth" })
-              }}
+              onClick={scrollToBio}
             >Lets Get Started</Button>
           </div>
           

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -11,6 +11,7 @@ import { SocialButtons } from "../components/socialButtons"
 function ProjectCard({ project }: { project: typeof projects[number] }) {
   const [expanded, setExpanded] = useState(false)
   const card = useInView()
+  const thumbRef = useRef<HTMLVideoElement>(null)
 
   return (
     <div
@@ -23,14 +24,17 @@ function ProjectCard({ project }: { project: typeof projects[number] }) {
         <button
           type="button"
           onClick={() => setExpanded((prev) => !prev)}
+          onMouseEnter={() => thumbRef.current?.play()}
+          onMouseLeave={() => { thumbRef.current?.pause(); if (thumbRef.current) thumbRef.current.currentTime = 0 }}
           className="w-full flex items-center gap-4 p-4 text-left cursor-pointer"
         >
           <video
+            ref={thumbRef}
             src={project.video}
             muted
             loop
             playsInline
-            autoPlay
+            preload="metadata"
             className="w-16 h-16 rounded-md object-cover shrink-0"
           />
           <div className="flex-1 min-w-0">
@@ -51,15 +55,16 @@ function ProjectCard({ project }: { project: typeof projects[number] }) {
           <div className="min-h-0 overflow-hidden">
             <div className="flex flex-col md:flex-row">
                 <div className="md:w-64 shrink-0 overflow-hidden">
+                  {expanded && (
                   <video
                     src={project.video}
                     muted
                     loop
                     playsInline
                     autoPlay
-                    preload="none"
                     className="w-full h-48 md:h-full object-cover"
                   />
+                  )}
                 </div>
                 <CardContent className="flex flex-col gap-4 p-6">
                   <p className="text-muted-foreground leading-relaxed">{project.longDescription}</p>

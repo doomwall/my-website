@@ -1,3 +1,4 @@
+import { useState, useEffect, useCallback } from "react"
 import { Link } from "react-router-dom"
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -6,6 +7,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel"
 import { useInView, popUp, visible, hidden } from "@/hooks/useInView"
 import { projects } from "@/data/projects"
@@ -13,6 +15,22 @@ import { SocialButtons } from "./socialButtons"
 
 function CarouselDev() {
   const carousel = useInView()
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+  const [count, setCount] = useState(0)
+
+  const onSelect = useCallback((api: CarouselApi) => {
+    if (!api) return
+    setCurrent(api.selectedScrollSnap())
+  }, [])
+
+  useEffect(() => {
+    if (!api) return
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap())
+    api.on("select", onSelect)
+    return () => { api.off("select", onSelect) }
+  }, [api, onSelect])
 
   return (
     <>
@@ -22,12 +40,12 @@ function CarouselDev() {
         style={{ transitionDelay: carousel.inView ? "200ms" : "0ms" }}
         className={`w-full max-w-4xl mx-auto ${popUp} ${carousel.inView ? visible : hidden}`}
       >
-      <Carousel>
+      <Carousel setApi={setApi}>
         <CarouselContent className="-ml-2 md:-ml-4">
           {projects.map((item) => (
             <CarouselItem
               key={item.id}
-              className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3 noselect"
+              className="pl-2 md:pl-4 basis-[85%] md:basis-1/2 lg:basis-1/3 noselect"
             >
               <div className="p-1">
                 <Link to="/projects">
@@ -61,6 +79,16 @@ function CarouselDev() {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
+      <div className="flex justify-center gap-2 mt-4 md:hidden">
+        {Array.from({ length: count }).map((_, i) => (
+          <button
+            key={i}
+            onClick={() => api?.scrollTo(i)}
+            className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-primary" : "w-2 bg-muted-foreground/40"}`}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
       </div>
     </div>
     <SocialButtons />
