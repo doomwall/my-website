@@ -1,3 +1,8 @@
+export interface Collaborator {
+  name: string
+  url: string
+}
+
 export interface Project {
   id: string
   title: string
@@ -6,6 +11,7 @@ export interface Project {
   description: string
   longDescription: string
   tech: string[]
+  collaborators?: Collaborator[]
   github?: string
   demo?: string
 }
@@ -52,8 +58,9 @@ export const projects: Project[] = [
     video: "/photos/game.mp4",
     description: "A work-in-progress turn-based 2.5D dungeon crawler",
     longDescription:
-      "A turn-based 2.5D dungeon crawler built in Godot. Still in active development — the focus has been on building out the core combat loop, level structure, and enemy mechanics before expanding scope.",
+      "A turn-based 2.5D dungeon crawler built in Godot. Still in active development — the focus has been on building out the core combat loop, level structure, and enemy mechanics before expanding scope. Made in collaboration with Wilpuri Arts, who are responsible for the game's art and design. The project serves as a learning experience in game development and design, and is a passion project for both of us.",
     tech: ["GDScript", "Godot"],
+    collaborators: [{ name: "Wilpuri Arts", url: "https://www.instagram.com/wilpuriarts/" }],
   },
   {
     id: "mtg-discord",

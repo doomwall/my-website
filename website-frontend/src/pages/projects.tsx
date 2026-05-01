@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { ChevronDown } from "@hugeicons/core-free-icons"
+import { ChevronDown, UserIcon } from "@hugeicons/core-free-icons"
 import { projects } from "@/data/projects"
 import { popUp } from "@/hooks/useInView"
 import { SocialButtons } from "../components/socialButtons"
@@ -88,6 +88,23 @@ function ProjectCard({
                       <Badge key={t} variant="outline">{t}</Badge>
                     ))}
                   </div>
+                  {project.collaborators && (
+                    <div className="flex flex-wrap gap-2 items-center">
+                      <span className="text-xs text-muted-foreground">Made with:</span>
+                      {project.collaborators.map((c) => (
+                        <a
+                          key={c.name}
+                          href={c.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                        >
+                          <HugeiconsIcon icon={UserIcon} size={12} strokeWidth={2} />
+                          {c.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                   {(project.github ?? project.demo) && (
                     <div className="flex gap-2 mt-auto pt-2">
                       {project.github && (
